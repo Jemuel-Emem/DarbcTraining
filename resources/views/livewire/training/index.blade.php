@@ -2,7 +2,7 @@
 
 
 
-    <nav class=" border-gray-200 rounded bg-blue-700 dark:bg-gray-800 dark:border-gray-700">
+    <nav class=" border-gray-200 rounded bg-blue-700 dark:bg-gray-800 dark:border-gray-700  ">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <a href="#" class="flex items-center">
               <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-10" alt="Flowbite Logo" />
@@ -27,12 +27,31 @@
                 <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
               </li>
 
-              <li>
+             <div class="flex items-center justify-end pl-12">
+              <li >
+
+                <a class= "text-white text-2xl underline  p-2">
+                    {{ Auth::user()->name }}
+                </a>
               </li>
 
-              <br>
+           <div class="pl-12">
 
-              </li>
+            <a class="text-white text-2xl no-underline border p-1"  href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+        <i class="ri-logout-circle-fill"></i>
+           </a>
+           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+               @csrf
+           </form>
+        </div>
+
+        </div>
+         </div>
+
+                <!-- Authentication Links -->
+
             </ul>
           </div>
         </div>

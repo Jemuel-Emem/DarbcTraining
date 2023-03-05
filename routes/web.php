@@ -1,6 +1,8 @@
 <?php
 use App\Http\Livewire\Subscribers\Dashboard;
 use App\Http\Livewire\Training\Index;
+use App\Http\Livewire\Training\Login;
+use App\Http\Livewire\Training\Register;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,16 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 //Livewire samples
 
 
-Route::get('dashboard',Dashboard::class)->name('dashboard');
-Route::get('index',Index::class)->name('index');
+// Route::get('dashboard',Dashboard::class)->name('dashboard');
 
+
+Route::get('/', function () {
+    return view('index');
+ });
+//sample authentication here
+
+Route::get('/',Index::class)->name('index')->middleware('auth');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'login'])->name('home');
