@@ -5,7 +5,7 @@
     <nav class=" border-gray-200 rounded bg-blue-700 dark:bg-gray-800 dark:border-gray-700  ">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <a href="#" class="flex items-center">
-              <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-10" alt="Flowbite Logo" />
+              <img src="https://i.pinimg.com/236x/0c/fd/a2/0cfda250d33a038d777ef363e6ced83c.jpg" class="h-6 mr-2 sm:h-10" alt="Flowbite Logo" />
               <span class="self-center text-xl font-semibold whitespace-nowrap text-white">LMS</span>
           </a>
           <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
@@ -30,14 +30,14 @@
              <div class="flex items-center justify-end pl-12">
               <li >
 
-                <a class= "text-white text-2xl underline  p-2">
+                <a class= "text-white italic text-xl underline  p-2">
                     {{ Auth::user()->name }}
                 </a>
               </li>
 
            <div class="pl-12">
 
-            <a class="text-white text-2xl no-underline border p-1"  href="{{ route('logout') }}"
+            <a class="text-danger border border-red-600 text-2xl no-underline  p-1"  href="{{ route('logout') }}"
               onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
         <i class="ri-logout-circle-fill"></i>
@@ -50,11 +50,7 @@
         </div>
          </div>
 
-                <!-- Authentication Links -->
-
-            </ul>
-          </div>
-        </div>
+        </div>  <!-- Authentication Links -->
       </nav>
 
 
@@ -88,7 +84,7 @@
             </div>
 
             <div class="card-body flex gap-1">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#view" wire:click="edit({{$post->id}})">View</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addstudent" wire:click="edit({{$post->id}})">AddStudent</button>
                 <button class="btn btn-warning" data-toggle="modal" data-target="#updatedata" wire:click="edit({{$post->id}})">Update</button>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#delete" wire:click="deleteId({{$post->id}})">Delete</button>
             </div>
@@ -156,148 +152,30 @@
           <button type="button" class="btn btn-danger  material-symbols-outlined" data-dismiss="modal" ><i class="ri-close-line"></i>Close</button>
           <button type="submit" wire:click="submit" class="btn btn-primary material-symbols-outlined"><i class="ri-save-line"></i>Save</button>
         </div>
-      </div>
-    </div>
-  </div>
-
- {{-- modal view here --}}
-
-  <div wire:ignore.self class="modal fade " id="view" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content ">
-        <div class="modal-header bg-blue-700 ">
-          <h5 class="modal-title text-white font-bold" id="exampleModalLabel">Data</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
+       </div>
+       </div>
 
-        {{-- Modal body here.... --}}
+{{-- ---------------------------------stop -------------- --}}
 
-        <div class="modal-body" >
+{{--  modal here --}}
 
-            {{-- Validate area --}}
-        @if (session()->has('message'))
-        <div class="alert alert-primary text-center">{{ session('message') }}</div>
-        @endif
+@include("livewire.training.add-student-modal")
 
-          <form >
-            <div class="mb-3">
-                <Label>Subject Code:</Label>
-              <input wire:model="name">
+@include("livewire.training.delete-modal")
 
-            </div>
-            <div class="mb-3">
-                <Label>Discription:</Label>
-                <input wire:model="address">
-
-            </div>
-
-            <div class="mb-3">
-                <Label>Date:</Label>
-                <input   wire:model="contract">
-
-            </div>
-
-            <div class="mb-3">
-                <Label>Time:</Label>
-                <input  wire:model="subscriptions">
-
-            </div>
-
-          </form>
-        </div>
-        <div class="modal-footer bg-blue-700 ">
-          <button type="button" class="btn btn-primary  material-symbols-outlined" data-dismiss="modal" ><i class="ri-close-line"></i>Close</button>
-
-        </div>
-      </div>
-    </div>
-  </div>
+@include("livewire.training.update-modal")
 
 
-  {{-- delete modal --}}
 
-  <div wire:ignore.self class="modal fade " id="updatedata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content ">
-        <div class="modal-header bg-blue-700 ">
-          <h5 class="modal-title text-white font-bold" id="exampleModalLabel">Update data</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-        {{-- Modal body here.... --}}
-
-        <div class="modal-body" >
-
-            {{-- Validate area --}}
-        @if (session()->has('message'))
-        <div class="alert alert-primary text-center">{{ session('message') }}</div>
-        @endif
-
-          <form >
-            <div class="mb-3">
-                <Label>Subject Code:</Label>
-                <input type="text" class="form-control " wire:model="name">
-                @error('name') <span class="error text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <Label>Discription:</Label>
-                <input type="text" class="form-control" wire:model="address">
-                @error('address') <span class="error text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="mb-3">
-                <Label>Date:</Label>
-                <input type="text" class="form-control" wire:model="contract">
-                @error('contract') <span class="error text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="mb-3">
-                <Label>Time:</Label>
-                <input type="text" class="form-control" wire:model="subscriptions">
-                @error('subscriptions') <span class="error text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-
-          </form>
-        </div>
-        <div class="modal-footer bg-blue-700 ">
-          <button type="button" class="btn btn-danger  material-symbols-outlined" data-dismiss="modal" wire:click="close"><i class="ri-close-line"></i>Close</button>
-          <button type="submit" wire:click="update" class="btn btn-primary material-symbols-outlined"><i class="ri-save-line"></i>Update</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  {{-- delete modal here --}}
-  <div wire:ignore.self class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-blue-700">
-                <h5 class="modal-title text-white" id="exampleModalLabel">Delete Confirm</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true close-btn">×</span>
-                </button>
-            </div>
-           <div class="modal-body">
-                <p>Are you sure want to delete?</p>
-            </div>
-            <div class="modal-footer bg-blue-700">
-                <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                <button type="button" wire:click.prevent="delete()" class="btn btn-danger close-modal" data-dismiss="modal">Yes, Delete</button>
-            </div>
-        </div>
-    </div>
 </div>
 
 
 
 
-</div>
+
+
+
+
+
+

@@ -4,10 +4,10 @@ namespace App\Http\Livewire\Training;
 
 use Livewire\Component;
 
-class Register extends Component
+class AddStudentModal extends Component
 {
     public function render()
     {
-        return view('livewire.training.register');
+        return view('livewire.training.add-student-modal');
     }
 }

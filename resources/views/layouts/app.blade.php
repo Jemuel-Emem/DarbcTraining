@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'LMS') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -16,27 +16,30 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body class="bg-white">
-    <div id="">
-        <nav class="navbar navbar-expand-md navbar-light  shadow-sm bg-primary border border-2" >
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm ">
             <div class="container">
-             <h1 class="text-white fw-bold">LMS</h1>
+                <img src="https://i.pinimg.com/236x/0c/fd/a2/0cfda250d33a038d777ef363e6ced83c.jpg" alt="Error" class="border rounded " style="height: 40px; margin-right:4px;">
+                <a class="navbar-brand text-white fw-bold fs-4 " href="{{ url('/') }}">
+                    {{ config('', 'LMS') }}
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto ">
+                    <ul class="navbar-nav me-auto">
 
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto ">
+                    {{-- <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item ">
+                                <li class="nav-item">
                                     <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
@@ -65,7 +68,7 @@
                                 </div>
                             </li>
                         @endguest
-                    </ul>
+                    </ul> --}}
                 </div>
             </div>
         </nav>

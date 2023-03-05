@@ -16,20 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/', function () {
+    return view('home');
+ });
 
 //Livewire samples
 
 
-// Route::get('dashboard',Dashboard::class)->name('dashboard');
+Route::get('dashboard',Dashboard::class)->name('dashboard');
 
 
-Route::get('/', function () {
-    return view('index');
- });
+
 //sample authentication here
 
-Route::get('/',Index::class)->name('index')->middleware('auth');
+ Route::get('index',Index::class)->name('index')->middleware('auth');
+Route::get('home',Index::class)->name('home');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'login'])->name('home');
+// Route::get('/index', [App\Http\Controllers\HomeController::class, 'login'])->name('index'); // this code pag mag redirect call ang user sa link
+// Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'login']); // to make stay in login form
